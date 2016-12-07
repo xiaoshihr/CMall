@@ -1,0 +1,30 @@
+﻿@*<div class="viewport">
+  <footer>
+    <div class="footerTop">
+      @if (WorkContext.Uid < 1)
+      {
+      <div class="left"><a href="@Url.Action("login", "account", new RouteValueDictionary { { "returnUrl", WorkContext.Url } })">登录</a> | <a href="@Url.Action("register", "account")">注册</a></div>
+      }
+      else
+      {
+        <div class="left"><a href="@Url.Action("index", "ucenter")">@WorkContext.NickName</a> | <a href="@Url.Action("logout", "account")">退出</a></div>   
+      }
+      <div class="right"><a href="#top">回到顶部 </a></div>
+      <div class="clear"></div>
+    </div>
+    <div class="footerCon"><a href="@Url.Action("index", "home")" class="hot">触屏版</a><a href="/?m=1">电脑版</a></div>
+    <div class="copyright" align="center">创梦星火 &copy; 2016-2018 版权所有.</div>
+  </footer>
+</div>
+@Html.Raw(WorkContext.MallConfig.Script)*@
+<link href="/mobile/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<div id="nav-footer">
+    <ul>
+        
+        <li style="width:25%" class="@if (ViewData["ptype"] != null&& ViewData["ptype"].ToString() == "1") { var cl = "on"; @cl; }"><a href="/mob/"><i class="icon-home"></i>商城首页</a></li>
+        <li style="width:25%" class="@if (ViewData["ptype"] != null&&ViewData["ptype"].ToString() == "2") { var cl = "on"; @cl; } "><a href="/mob/category/list"><i class="icon-reorder"></i>商品分类</a></li>
+        <li style="width:25%" class="@if (ViewData["ptype"] != null&&ViewData["ptype"].ToString() == "3") { var cl = "on"; @cl; }"><a href="/mob/cart"><i class="icon-shopping-cart"></i>购物车</a></li>
+        <li style="width:25%" class="@if (ViewData["ptype"] != null&&ViewData["ptype"].ToString() == "4") { var cl = "on"; @cl; }"><a href="/mob/ucenter"><i class="icon-user"></i>会员中心</a></li>
+        
+    </ul>
+</div>

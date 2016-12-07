@@ -1,0 +1,86 @@
+﻿@model BrnMall.Web.MallAdmin.Models.PayOrderListModel
+
+@section header{
+<title>用户列表</title>
+<link type="text/css" rel="stylesheet" href="/admin_mall/css/site.css"/>
+<script type="text/javascript" src="/admin_mall/scripts/jquery.js"></script>
+<script type="text/javascript" src="/admin_mall/scripts/showlist.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+微信 &gt;&gt;微信支付列表
+<div class="right">
+@*<a href="@Url.Action("add")" class="menuBT"><img src="/admin_mall/images/add.jpg"/>添加</a>*@
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm("sendbaglist", "weixin"))
+{
+<div class="dataListSearch">
+<table height="32">
+        <tbody>
+         <tr>
+        <td>
+          用户名：
+        </td>
+        <td width="130">
+          	@Html.TextBox("UserName", Model.UserName, new { height = "18" })
+        </td>
+        
+       
+       <td>
+       <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/admin_mall/images/s.jpg" />
+       </td>
+      </tr>
+     </tbody></table>
+</div>
+
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="1%"></th>
+    <th width="30%" align="left">订单号</th>
+    <th width="10%" align="left">支付用户</th>
+    <th align="left">支付金额</th>
+    <th width="10%" align="left">是否支付</th>
+    
+    <th width="10%" align="left">订单创建时间</th>
+    <th width="10%" align="left">支付时间</th>
+   
+    </tr>
+</thead>
+  <tbody>
+  @foreach (BrnMall.Core.Model.PayOrder info in Model.PatOrderList)
+  {
+  <tr>
+    <td></td>
+    <td>@info.OrderNo</td>
+    <td>@info.UserName</td>
+      <td>@info.Pice</td>
+    @if (info.PayStatus == 0)
+    {
+        <td>未支付</td>
+    }
+    else 
+    {
+        <td>已支付</td>
+    }
+    
+    
+    <td>@info.Addtime</td>
+      <td>@info.Paytime</td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.MallAdminPager(Model.PageModel)
+</div>
+</div>
+}
+}

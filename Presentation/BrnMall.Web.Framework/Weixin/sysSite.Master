@@ -1,0 +1,337 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="sysSite.master.cs" Inherits="qiaojiaren.qiaojiaren.sysSite" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>后台管理系统</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <meta content="" name="description" />
+
+    <meta content="" name="author" />
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+    <link href="/administration/Manger/media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/style-metro.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/style.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/style-responsive.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
+
+    <link href="/administration/Manger/media/css/uniform.default.css" rel="stylesheet" type="text/css" />
+
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL STYLES -->
+
+    <link href="/administration/Manger/media/css/jquery.gritter.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/fullcalendar.css" rel="stylesheet" type="text/css" />
+
+    <link href="/administration/Manger/media/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <link href="/administration/Manger/media/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <!-- END PAGE LEVEL STYLES -->
+
+    <link rel="shortcut icon" href="media/image/favicon.ico" />
+    <link href='media/sweetalert/sweetalert.css' rel='stylesheet' />
+    <script src="/administration/Manger/js/jquery-1.7.2.js"></script>
+    <script src='media/sweetalert/sweetalert-dev.js'></script>
+    <script src='media/sweetalert/sweetalert.min.js'></script>
+     <script type='text/javascript'>
+
+         jQuery(document).ready(function () {
+             var Fid = $("#fid").val();
+             var sa = $('#li' + Fid + '').html();
+             $('.page-sidebar-menu li').attr('class', '');
+             $('#li' + Fid + '').attr('class', 'start active');
+             $('#span' + Fid + '').attr('class', 'selected');
+         });
+            </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="page-header-fixed">
+    <form id="form1" runat="server">
+        <%--<input id="mid" name="mid" type="hidden" value="<%=mid %>" />
+        <input id="fid" name="fid" type="hidden" value="<%=Fid %>" />--%>
+        <input id="action" name="action" type="hidden" />
+        <div class="header navbar navbar-inverse navbar-fixed-top">
+
+            <!-- BEGIN TOP NAVIGATION BAR -->
+
+            <div class="navbar-inner">
+
+                <div class="container-fluid">
+
+                    <!-- BEGIN LOGO -->
+
+                    <a class="brand" href="JavaScript:void(0)">
+
+                        <img src="media/image/logo.png" alt="logo" />
+
+                    </a>
+
+                    <!-- END LOGO -->
+
+                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+                    <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+                        <img src="media/image/menu-toggler.png" alt="" />
+
+                    </a>
+                    <ul class="nav pull-right">
+                        <!-- 获取站内信 -->
+                        
+                        <li class="dropdown user">
+
+                            <a href="JavaScript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+
+                                <img alt="" src="media/image/avatar1_small.jpg" />
+
+                                <span class="username"></span>
+
+                                <i class="icon-angle-down"></i>
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                
+
+                                <li><a href="/admin/"><i class="icon-key"></i>&nbsp;返回&nbsp;</a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="page-container">
+            <div class="page-sidebar nav-collapse collapse">
+
+                <!-- 获取左侧导航栏 -->
+                <ul class='page-sidebar-menu'> 
+                <span class='title'>公众号配置</span>
+                <span id='li9' class='arrow'></span>
+                <li id='li1' class=''><a href='javascript:;'><i class='icon-bookmark-empty'></i></a>
+                    <ul class='sub-menu' style="display:block;"><li> <a href='/administration/weixin/wei_Configs.aspx?menuFid=9&mid=10'>微参数配置</a></li>
+                    <li> <a href='/administration/weixin/wei_MenusAdd.aspx?menuFid=9&mid=11'>添加微菜单</a></li>
+                        <li> <a href='/administration/weixin/wei_MenusList.aspx?menuFid=9&mid=12'>微菜单列表</a></li>
+                        <li> <a href='/administration/weixin/wei_MenusConfig.aspx?menuFid=9&mid=13'>配置微菜单</a></li>
+                        <li> <a href='/administration/weixin/wei_MsgAdd.aspx?menuFid=9&mid=14'>添加微事件</a></li>
+                        <li> <a href='/administration/weixin/wei_MsgConfig.aspx?menuFid=9&mid=15'>配置微事件</a></li>
+
+                    </ul></li><%--<li id='li16' class=''><a href='javascript:;'><i class='icon-table'></i>--%>
+                    </ul>
+                <!-- 获取左侧导航栏结束 -->
+
+            </div>
+            <div class="page-content">
+
+                <!-- BEGIN PAGE CONTAINER-->
+
+                <div class="container-fluid">
+
+                    <!-- BEGIN PAGE HEADER-->
+
+                    <div class="row-fluid">
+
+                        <div class="span12">
+                            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+                            <h3 class="page-title">微信 <small></small>
+
+                            </h3>
+
+                            <ul class="breadcrumb">
+
+                                <li>
+
+                                    <i class="icon-home"></i>
+
+                                    <a href="index.aspx">微信</a>
+
+                                    <i class="icon-angle-right"></i>
+
+                                </li>
+
+                                <li><a href="JavaScript:void(0)">
+                                    <asp:Label ID="childmenu" runat="server" Text=""></asp:Label></a></li>
+
+
+                            </ul>
+
+
+                            <div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- END PAGE HEADER-->
+
+
+
+                </div>
+
+                <!-- END PAGE CONTAINER-->
+
+            </div>
+
+            <!-- END PAGE -->
+
+        </div>
+
+        <!-- BEGIN FOOTER -->
+        <div class="footer">
+
+            <div class="footer-inner">
+                2015 &copy; Metronic by keenthemes.
+
+            </div>
+
+            <div class="footer-tools">
+
+                <span class="go-top">
+
+                    <i class="icon-angle-up"></i>
+
+                </span>
+
+            </div>
+
+        </div>
+    </form>
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+    <!-- BEGIN CORE PLUGINS -->
+
+<%--    <script src="/Manger/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>--%>
+
+    <script src="/Manger/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+    <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+    <script src="/Manger/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--[if lt IE 9]>
+
+	<script src="/Manger/media/js/excanvas.min.js"></script>
+
+	<script src="/Manger/media/js/respond.min.js"></script>  
+
+	<![endif]-->
+
+    <script src="/Manger/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.uniform.min.js" type="text/javascript"></script>
+
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+
+   <%-- <script src="/Manger/media/js/jquery.vmap.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.vmap.russia.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.vmap.world.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.vmap.europe.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.vmap.germany.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.vmap.usa.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
+--%>
+    <script src="/Manger/media/js/jquery.flot.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.flot.resize.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.pulsate.min.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/date.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/daterangepicker.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/jquery.gritter.js" type="text/javascript"></script>
+
+   <%-- <script src="/Manger/media/js/fullcalendar.min.js" type="text/javascript"></script>--%>
+
+    <%--<script src="/Manger/media/js/jquery.easy-pie-chart.js" type="text/javascript"></script>--%>
+
+    <script src="/Manger/media/js/jquery.sparkline.min.js" type="text/javascript"></script>
+
+    <!-- END PAGE LEVEL PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+    <script src="/Manger/media/js/app.js" type="text/javascript"></script>
+
+    <script src="/Manger/media/js/index.js" type="text/javascript"></script>
+
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <script>
+
+        jQuery(document).ready(function () {
+
+            App.init(); // initlayout and core plugins
+
+            Index.init();
+
+//            Index.initJQVMAP(); // init index page's custom scripts
+
+//            Index.initCalendar(); // init index page's custom scripts
+
+//            Index.initCharts(); // init index page's custom scripts
+
+//            Index.initChat();
+
+//            Index.initMiniCharts();
+
+            Index.initDashboardDaterange();
+
+            
+
+        });
+
+    </script>
+
+    <!-- END JAVASCRIPTS -->
+
+    <script type="text/javascript">        var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-37564768-1']); _gaq.push(['_setDomainName', 'keenthemes.com']); _gaq.push(['_setAllowLinker', true]); _gaq.push(['_trackPageview']); (function () { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+
+</body>
+
+<!-- END BODY -->
+</html>

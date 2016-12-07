@@ -1,0 +1,78 @@
+﻿@model BrnMall.Web.Mobile.Models.ProductModel
+@{
+    Layout = "~/mobile/views/shared/_newlayout.cshtml";
+    ViewBag.Title = "123";
+}
+<div class="banners">
+    <a href="javascript:history.go(-1);"><img src="/mobile/images/bg_info2.jpg"></a>
+</div>
+<div id="content">
+    <div class="box_exp info_light">
+        <div class="info_integral">
+            <span class="title"><i class="icon-bookmark-empty"></i>商品信息</span>
+        </div>
+        <div style="display: block; overflow: hidden; opacity: 1;">
+            <div class="info_child">
+                <h2>三星Node3</h2>
+                <p>vivo X3以5.75mm成就全球最薄的Hi-Fi智能手机；5.0英寸HD屏幕、极速4核CPU、800W像素背照式摄像头、500W 88度的广角前置摄像头... ...集万千宠爱于一身，却依然极致纤薄。</p>
+            </div>
+            <div class="info_child_txt">
+                <a href="cart.html" class="left fb f14 red">￥2980.00 <s class="mprice">￥21008.00</s></a>
+                <a href="cart.html" class="button button-rounded button-flat-caution right"><i class="icon-shopping-cart"></i> 加入购物车</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="box_exp info_light">
+        <div class="info_integral">
+            <span class="title"><i class="icon-bookmark-empty"></i>商品图片</span>
+        </div>
+        <div style="display: block; overflow: hidden; opacity: 1;">
+            
+            <div class="info_child">
+                <h2>@</h2>
+@foreach (ProductImageInfo info in Model.ProductImageList)
+{
+                <img src="@{@WorkContext.ImageCDN}/upload/store/@info.StoreId/product/show/thumb300_300/@info.ShowImg">
+    }
+            </div>
+           
+        </div>
+    </div>
+    <div class="box_exp info_light">
+        <div class="info_integral">
+            <span class="title"><i class="icon-time"></i><font color="#FF3300">优惠信息</font></span>
+        </div>
+        <div style="display: block; overflow: hidden; opacity: 1;">
+            <div class="info_child">
+                <p>您当前的会员等级是：<span class="red">钻石会员</span><br>可享受<span class="red">8</span>折优惠已经为您省了<span class="red">100</span>元</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="box_exp info_light">
+        <div class="info_integral">
+            <span class="title"><i class="icon-bookmark-empty"></i>热销商品</span>
+        </div>
+        <div style="display: block; overflow: hidden; opacity: 1;">
+            <div class="info_child">
+                <ul>
+                    <li style="width:33%"><div class="line3"><a href="cart.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                    <li style="width:33%"><div class="line3"><a href="cart.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                    <li style="width:33%"><a href="cart.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>
+                    <li style="width:33%"><div class="line3"><a href="cart.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                    <li style="width:33%"><div class="line3"><a href="cart.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                    <li style="width:33%"><a href="cart.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="margin:8px 0;"><a href="cart.html" class="button button-block button-rounded button-caution button-large"><i class="icon-shopping-cart"></i>&nbsp;&nbsp;加入购物车</a></div>
+
+
+    <div style="padding:25px;"></div>
+</div>

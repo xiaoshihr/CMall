@@ -1,0 +1,215 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@{@WorkContext.MallConfig.SiteTitle}</title>
+    @Html.Raw(WorkContext.MallConfig.SEOKeyword)
+    @Html.Raw(WorkContext.MallConfig.SEODescription)
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+  
+        @*
+    <link href="@{@WorkContext.CSSCDN}/mobile/css/base.css" rel="stylesheet" type="text/css">
+    <link href="@{@WorkContext.CSSCDN}/mobile/css/home.css" rel="stylesheet" type="text/css">
+    <script src="@{@WorkContext.ScriptCDN}/mobile/scripts/common.js" type="text/javascript"></script>
+    <link href="@{@WorkContext.ScriptCDN}/mobile/scripts/swiper.css" rel="stylesheet" type="text/css">
+    <script src="@{@WorkContext.ScriptCDN}/mobile/scripts/swiper.js" type="text/javascript"></script>*@
+        <script src="@{@WorkContext.ScriptCDN}/mobile/scripts/unslider.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="@{@WorkContext.CSSCDN}/mobile/css/style.css">
+    <link rel="stylesheet" type="text/css" href="@{@WorkContext.CSSCDN}/mobile/css/font-awesome.min.css">
+    <script type="text/javascript" src="@{@WorkContext.ScriptCDN}/mobile/scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@{@WorkContext.CSSCDN}/mobile/scripts/jquery.accordion.js"></script>
+    <script type="text/javascript" src="@{@WorkContext.CSSCDN}/mobile/scripts//unslider.min.js"></script>
+    
+</head>
+
+<body ondragstart="return false;" onselectstart="return false;" oncontextmenu="return false" onselectstart="return false"
+      ondragstart="return false" onbeforecopy="return false" oncopy=document.selection.empty() onselect=document.selection.empty()>
+    <div id="page">
+        @{
+            List<AdvertInfo>
+                bannerList = Adverts.GetAdvertList(44);
+        }
+            <div class="banner">
+                <ul>
+                    @foreach (AdvertInfo info in bannerList)
+                    {
+                    @*<li><a href="@info.Url"><img src="@{@WorkContext.ImageCDN}/upload/adv/@info.Image" /></a></li>*@
+                      <li style="background-image: url('@{@WorkContext.ImageCDN}/upload/adv/@info.Image');"></li>
+                    }
+                    @*<li style="background-image: url('/mobile/images/3.jpg');"></li>*@
+
+                </ul>
+            </div>
+            <div id="content">
+                <div class="box_exp info_light">
+                    <div class="info_integral">
+                        <span class="title"><i class="icon-bookmark-empty"></i>促销商品</span>
+                    </div>
+                    <div style="display: block; overflow: hidden; opacity: 1;">
+                        <div class="info_child">
+                            <ul>
+                                @{
+                                    DataTable dtcx = AdminProducts.AdminGetProductList(6, 1, "isbest=1");
+                                    DataTable dtrx = AdminProducts.AdminGetProductList(6, 1, "ishot=1");
+                                    DataTable dtys = AdminProducts.AdminGetProductList(6, 1, "cateid=6");
+                                    DataTable dtwm = AdminProducts.AdminGetProductList(6, 1, "brandId=26");
+                                }
+                                @foreach (DataRow dr in dtcx.Rows)
+                                {
+                                    <li style="width:33%"><div class="line3"><a href="/mob/catalog/product?pid=@dr["pid"]"><i><img src="@{@WorkContext.ImageCDN}/upload/store/@dr["StoreId"]/product/show/thumb100_100/@dr["showimg"]"></i><span>@if (@dr["pname"].ToString().Length <=6)
+                                    {@dr["pname"].ToString()}
+                                    else {@dr["pname"].ToString().Substring(0, 6)}</span><em>@BrnMall.Core.Common.Utils.StrToDecimal( @dr["shopprice"]).ToString("0")<s class="mprice">@BrnMall.Core.Common.Utils.StrToDecimal(@dr["marketprice"]).ToString("0")</s></em></a></div></li>
+                                }
+                                @*<li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>19800.00<s class="mprice">21008.00</s></em></a></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @Html.Partial("_map")
+
+
+
+
+
+
+                <div class="box_exp info_light">
+                    <div class="info_integral">
+                        <span class="title"><i class="icon-bookmark-empty"></i>热销商品</span>
+                    </div>
+                    <div style="display: block; overflow: hidden; opacity: 1;">
+                        <div class="info_child">
+                            <ul>
+
+                        @foreach (DataRow dr in dtrx.Rows)
+                        {
+                            <li style="width:33%">
+                                <div class="line3">
+                                    <a href="/mob/catalog/product?pid=@dr["pid"]">
+                                        <i><img src="@{@WorkContext.ImageCDN}/upload/store/@dr["StoreId"]/product/show/thumb100_100/@dr["showimg"]"></i><span>
+                                            @if (@dr["pname"].ToString().Length <= 6)
+                                        {@dr["pname"].ToString()}
+                                        else {@dr["pname"].ToString().Substring(0,6)}
+                                    </span><em>@BrnMall.Core.Common.Utils.StrToDecimal(@dr["shopprice"]).ToString("0")<s class="mprice">@BrnMall.Core.Common.Utils.StrToDecimal(@dr["marketprice"]).ToString("0")</s></em>
+                                </a>
+                            </div>
+                        </li>
+                      }  
+    @*<li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_exp info_light">
+                    <div class="info_integral">
+                        <span class="title"><i class="icon-bookmark-empty"></i>保健养生</span>
+                    </div>
+                    <div style="display: block; overflow: hidden; opacity: 1;">
+                        <div class="info_child">
+                            <ul>
+                                @foreach (DataRow dr in dtys.Rows)
+                                {
+                                    <li style="width:33%">
+                                        <div class="line3">
+                                            <a href="/mob/catalog/product?pid=@dr["pid"]">
+                                                <i><img src="@{@WorkContext.ImageCDN}/upload/store/@dr["StoreId"]/product/show/thumb100_100/@dr["showimg"]"></i><span>
+                                                    @if (@dr["pname"].ToString().Length <= 6)
+                                                {@dr["pname"].ToString()}
+                                                else {@dr["pname"].ToString().Substring(0, 6)}
+                                            </span><em>@BrnMall.Core.Common.Utils.StrToDecimal(@dr["shopprice"]).ToString("0")<s class="mprice">@BrnMall.Core.Common.Utils.StrToDecimal(@dr["marketprice"]).ToString("0")</s></em>
+                                        </a>
+                                    </div>
+                                </li>
+                                 }
+                                @*<li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_exp info_light">
+                    <div class="info_integral">
+                        <span class="title"><i class="icon-bookmark-empty"></i>完美专区</span>
+                    </div>
+                    <div style="display: block; overflow: hidden; opacity: 1;">
+                        <div class="info_child">
+                            <ul>
+                                @foreach (DataRow dr in dtys.Rows)
+                                {
+                                    <li style="width:33%">
+                                        <div class="line3">
+                                            <a href="/mob/catalog/product?pid=@dr["pid"]">
+                                                <i><img src="@{@WorkContext.ImageCDN}/upload/store/@dr["StoreId"]/product/show/thumb100_100/@dr["showimg"]"></i><span>
+                                                    @if (@dr["pname"].ToString().Length <= 6)
+                                                    {@dr["pname"].ToString()}
+                                                    else {@dr["pname"].ToString().Substring(0,6)}
+                                            </span><em>@BrnMall.Core.Common.Utils.StrToDecimal(@dr["shopprice"]).ToString("0")<s class="mprice">@BrnMall.Core.Common.Utils.StrToDecimal(@dr["marketprice"]).ToString("0")</s></em>
+                                        </a>
+                                    </div>
+                                </li>
+                                }
+                                @*<li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/7.jpg"></i><span>小熊真皮箱包</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><div class="line3"><a href="content.html"><i><img src="images/5.jpg"></i><span>三星NOTE3</span><em>198.00</em></a></div></li>
+                                <li style="width:33%"><a href="content.html"><i><img src="images/6.jpg"></i><span>索尼T808-9</span><em>198.00</em></a></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div style="padding:25px;"></div>
+            </div>
+           @{
+               ViewData["ptype"] = "1";
+        }
+
+        @Html.Partial("_footer", this.ViewData)
+
+</div>
+
+
+
+
+
+
+
+    <script>
+$(document).ready(function() {
+	$('.banner').unslider({
+		arrows: true,
+		fluid: true,
+		dots: true
+	});
+
+	$("#content").accordion({
+		alwaysOpen: false,
+		autoheight: false,
+		header: '.info_integral',
+		clearStyle: true
+	});
+});
+    </script>
+</body>
+</html>
+

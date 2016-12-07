@@ -1,0 +1,22 @@
+﻿@model BrnMall.Web.Mobile.Models.MyParentModel
+@{
+    ViewBag.Title = "我的推荐人";
+    Layout = "~/mobile/views/shared/_layout.cshtml";
+}
+<div class="pro">
+    @if (Model.MyParentDT.Rows.Count > 1)
+    {
+        foreach (DataRow dr in Model.MyParentDT.Rows)
+        {
+
+        <div class="proItme">
+            
+            <img src="@dr["avatar"]" width="45" height="45" />
+            <div class="order-msg">昵称:<p class="title">@dr["username"]</p>会员号:<p class="title">@dr["Userno"]<span></span></p></div>
+
+
+        </div>
+        }
+    }
+    <a href="myparentUpdate">修改推荐人</a>
+</div>

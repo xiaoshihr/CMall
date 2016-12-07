@@ -1,0 +1,10 @@
+﻿@model BrnMall.Web.Mobile.Models.MyParentUpdateModel
+@{
+    ViewBag.Title = "我的推荐人";
+    Layout = "~/mobile/views/shared/_layout.cshtml";
+}
+<form id="MyParentForm">
+    <div style="width:100%">
+       推荐人编号:<input type="text" id="txtMyParent" name="txtMyParent" width="50%" /><input type="button" onclick="MyParentUp()" value="提交" />
+    </div>
+</form>

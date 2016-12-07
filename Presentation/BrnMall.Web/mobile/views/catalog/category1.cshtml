@@ -1,0 +1,34 @@
+﻿@model BrnMall.Web.Mobile.Models.CategoryModel
+@{
+    Layout = "~/mobile/views/shared/_newlayout.cshtml";
+    ViewBag.Title = Model.CategoryInfo.Name;
+}
+
+        <div class="banners">
+            <a href="javascript:history.go(-1);"><img src="/mobile/images/bg_info1.jpg"></a>
+        </div>
+        <div id="content">
+            @Html.Partial("_map")
+
+            <div class="info_head info_light">
+@foreach (StoreProductInfo info in Model.ProductList)
+{
+                <div class="info_card">
+                    <a href="@Url.Action("product", new RouteValueDictionary { { "pid" , info.Pid } })">
+                        <i><img src="@{@WorkContext.ImageCDN}/upload/store/@info.StoreId/product/show/thumb100_100/@info.ShowImg"></i>
+                        <h1>@info.Name</h1>
+                        <span class="titles">￥@info.ShopPrice <s class="mprice">￥@info.MarketPrice</s> </span>
+                    </a>
+                </div>
+}
+            </div>
+
+
+
+
+
+
+
+            <div style="padding:25px;"></div>
+        </div>
+ 

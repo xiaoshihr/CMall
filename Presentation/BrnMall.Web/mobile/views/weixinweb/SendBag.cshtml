@@ -1,0 +1,53 @@
+﻿@model BrnMall.Web.Mobile.Models.SendBagModel
+@{
+    ViewBag.Title = "红包";
+    Layout = "~/mobile/views/shared/_layout.cshtml";
+}
+
+<div class="myAssetsNav">
+    @if(Model.Sendtype==1)
+    { 
+    <a href="#" class="hot"><strong>银卡帮扶</strong></a>
+    <a href="/mob/WeiXinWeb/sendbag?Sendtype=2"><strong>金卡帮扶</strong></a>
+    <a href="/mob/WeiXinWeb/sendbag?Sendtype=3"><strong>钻石帮扶</strong></a>
+    }
+    else if (Model.Sendtype == 2)
+    {
+        <a href="/mob/WeiXinWeb/sendbag"><strong>银卡帮扶</strong></a>
+        <a href="#" class="hot" ><strong>金卡帮扶</strong></a>
+        <a href="/mob/WeiXinWeb/sendbag?Sendtype=3"><strong>钻石帮扶</strong></a>
+    }
+    else 
+    {
+        <a href="/mob/WeiXinWeb/sendbag"  ><strong>银卡帮扶</strong></a>
+        <a href="/mob/WeiXinWeb/sendbag?Sendtype=2"><strong>金卡帮扶</strong></a>
+        <a href="#" class="hot" ><strong>钻石帮扶</strong></a>
+    }
+</div>
+<div class="pro">
+    @foreach (BrnMall.Core.Model.SendBag info in Model.SendBagList)
+    {
+
+        <div class="proItme">
+            <input id="stype" name="stype" type="hidden" value="@Model.Sendtype" />
+            <img src="@info.ModelUser.avatar" width="45" height="45" />
+            <div class="order-msg">
+				<p class="title">昵称:@info.ModelUser.username</p>
+				<p class="title">编号:No.@info.ModelUser.Userno<span></span></p>
+				<p class="title">红包:¥<span>@info.Pice</span></p>
+			</div>
+            <div class="proBt">
+                @if (info.Status < 1)
+                {
+                    <a class="redBts" href="javascript: void(0);" onclick="sendBag(@info.ID)">领取<br>红包</a>
+                }
+                else
+                {
+                    <span class="redBts">已经<br>领取</span>
+                }
+                
+            </div>
+        </div>
+    }
+</div>
+@Html.WebPager(Model.PageModel).ShowSummary(false)

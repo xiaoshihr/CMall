@@ -1,0 +1,87 @@
+﻿@model BrnMall.Web.Mobile.Models.CategoryListModel
+@{
+    Layout = "~/mobile/views/shared/_newlayout.cshtml";
+    ViewBag.Title = "商品分类";
+    
+   ViewData["ptype"] = "2";
+
+}
+
+        <div class="banners">
+            <a href="javascript:history.go(-1);"><img src="/mobile/images/bg_info1.jpg"></a>
+        </div>
+        @Html.Partial("_map");
+
+
+            
+  @if (Model.CategoryInfo == null)
+  {
+    <div class="info_head info_light">
+        @foreach (CategoryInfo info in Model.CategoryList)
+        {
+            if (info.Layer == 1)
+            {
+                <div class="info_card">
+                    <a href="#">
+                        @*<i><img src="images/8.jpg"></i>*@
+                        <h1>@info.Name</h1>
+
+                        <span class="title">
+                          @{
+                              List<CategoryInfo> itemList = Categories.GetChildCategoryList(info.CateId, 1, Model.CategoryList);
+                              for (int i = 0; i < itemList.Count; i = i + 3)
+                              {
+
+                            <a href="@Url.Action("list", "category", new RouteValueDictionary { { "cateId", itemList[i].CateId } })" class="new-category2-a"><span class="new-bar"></span>@itemList[i].Name</a>
+                                  if ((i + 1) < itemList.Count)
+                                  {
+                            <a href="@Url.Action("list", "category", new RouteValueDictionary { { "cateId", itemList[i + 1].CateId } })" class="new-category2-a"><span class="new-bar"></span>@itemList[i + 1].Name</a>
+                                  }
+                                  else
+                                  {
+                            <a href="javascript:void(0)" class="new-category2-a"><span class="new-bar"></span></a>
+                                  }
+                                  if ((i + 2) < itemList.Count)
+                                  {
+                            <a href="@Url.Action("list", "category", new RouteValueDictionary { { "cateId", itemList[i + 2].CateId } })" class="new-category2-a"><span class="new-bar"></span>@itemList[i + 2].Name</a>
+                                  }
+                                  else
+                                  {
+                            <a href="javascript:void(0)" class="new-category2-a"><span class="new-bar"></span></a>
+                                      }
+
+                                  }
+                              }
+
+                        </span>
+                    </a>
+                  
+                
+                    
+                
+           
+                </div>
+            }
+
+        }
+    </div>
+  }
+  else
+  {
+    <div class="round">
+        <ul>
+        @foreach (CategoryInfo info in Model.CategoryList)
+        {
+            <li><a href="@Url.Action("category", "catalog", new RouteValueDictionary { { "cateId", info.CateId } })"><span>@info.Name</span></a></li>
+
+        }
+        </ul>
+    </div>
+  }
+
+
+
+
+            <div style="padding:25px;"></div>
+        </div>
+

@@ -1,0 +1,119 @@
+﻿@model BrnMall.Web.MallAdmin.Models.SendBagListModel
+
+@section header{
+<title>用户列表</title>
+<link type="text/css" rel="stylesheet" href="/admin_mall/css/site.css"/>
+<script type="text/javascript" src="/admin_mall/scripts/jquery.js"></script>
+<script type="text/javascript" src="/admin_mall/scripts/showlist.js"></script>
+}
+
+@section body{
+<h1 class="rightH1">
+微信 &gt;&gt; 红包列表
+<div class="right">
+@*<a href="@Url.Action("add")" class="menuBT"><img src="/admin_mall/images/add.jpg"/>添加</a>*@
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+</h1>
+@using (Html.BeginForm("sendbaglist", "weixin"))
+{
+<div class="dataListSearch">
+<table height="32">
+        <tbody>
+         <tr>
+        <td width="35"><img id="searchImg" src="/admin_mall/images/search1.gif"/></td>
+        <td>
+          会员等级：
+        </td>
+        <td width="110">
+          @Html.DropDownListFor(x => x.Sentype, Model.sentypeList)
+        </td>
+        <td>
+          &nbsp;&nbsp;领取状态：
+        </td>
+        <td width="110">
+          @Html.DropDownListFor(x => x.Status, Model.statusList)
+        </td>
+        <td>
+          用户名：
+        </td>
+        <td width="130">
+          	@Html.TextBox("UserName", Model.UserName, new { height = "18" })
+        </td>
+        
+       
+       <td>
+       <input id="SearchUser" name="SearchUser" type="image" class="searchBut submit" src="/admin_mall/images/s.jpg" />
+       </td>
+      </tr>
+     </tbody></table>
+</div>
+
+<div class="dataList">
+<table width="100%">
+<thead>
+  <tr>
+    <th width="1%"></th>
+    <th width="10%" align="left">订单号</th>
+    <th width="10%" align="left">接收者</th>
+    @*<th align="left">发放用户</th>*@
+    <th width="10%" align="left">金额</th>
+    <th width="10%" align="left">红包类型</th>
+    
+    <th width="10%" align="left">发送状态</th>
+    <th width="10%" align="left">添加时间</th>
+    <th width="10%" align="left">发送时间</th>
+   
+    </tr>
+</thead>
+  <tbody>
+  @foreach (BrnMall.Core.Model.SendBag info in Model.SBagList)
+  {
+  <tr>
+    <td></td>
+    <td>@info.Mchbillno</td>
+    <td>@info.ModelUser.username</td>
+      <td>@info.Pice</td>
+    @if (info.SendType == 0)
+    {
+        <td>手续费</td>
+    }
+    else if (info.SendType == 1)
+    {
+        <td>1级</td>
+    }
+    else if (info.SendType == 2)
+    {
+        <td>2级</td>
+    }
+    else if (info.SendType == 3)
+    {
+        <td>3级</td>
+    }
+    else
+    {
+        <td>其他</td>
+    }
+      @if (info.Status == 0)
+      {
+        <td>未发送</td>
+      }
+      else
+      {
+        <td>已发送</td>
+      }
+    <td>@info.Addtime</td>
+      <td>@info.SendTime</td>
+    </tr>
+  }
+</tbody>
+</table>
+</div>
+<div class="dataListEdit">
+<div class="page">
+    @Html.MallAdminPager(Model.PageModel)
+</div>
+</div>
+}
+}
